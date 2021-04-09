@@ -1,8 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:xl_flutter/my_text_button.dart';
+import 'package:xl_flutter/stydy_library.dart';
 
-import 'package:flutter/scheduler.dart';
+import 'package:xl_flutter/widgets/animates/study_animate.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,17 +14,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(backgroundColor: Colors.blue)),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -33,25 +34,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var listTag = ["动画相关", "框架相关"];
+  List<Widget> listWidget = [StudyAnimate(), StudyLibrary()];
 
   @override
   void initState() {
-    SchedulerBinding.instance.addTimingsCallback((timings) {
-      print('timings');
-    });
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      print("timeStamp");
-    });
     super.initState();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      ++_counter;
-    });
-  }
-
+  void _incrementCounter() {}
+//  Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: TextButton(
+//                   style: ButtonStyle(
+//                       minimumSize: MaterialStateProperty.resolveWith(
+//                           (states) => Size(double.infinity, 50)),
+//                       backgroundColor: MaterialStateProperty.resolveWith(
+//                           (states) => Colors.blue)),
+//                   onPressed: () {
+//                     Navigator.push(context,
+//                         MaterialPageRoute(builder: (context) {
+//                       return HomeAnimatePage();
+//                     }));
+//                   },
+//                   child: Text(
+//                     "框架相关",
+//                     style: home_button_text_style,
+//                   )),
+//             )
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,33 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-          child: Column(
-        children: [
-          Container(
-            height: 300,
-            child: Stack(
-              fit: StackFit.passthrough,
-              children: [
-                Text('0' * 10000),
-                Center(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: ClipRect(
-                      child: Container(
-                        color: Colors.red,
-                        alignment: Alignment.center,
-                        width: 200,
-                        height: 200,
-                        child: animataSwitcher(_counter, context),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      )),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              for (var i = 0; i < listTag.length; i++)
+                MyTextButton(tag: listTag[i], child: listWidget[i])
+            ]),
+      ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

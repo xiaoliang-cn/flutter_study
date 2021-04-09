@@ -1,5 +1,6 @@
 typedef EventBuysCallback = Function(String arg);
 
+///create a  global event bus
 class EventBus {
 //创建一个单例
   EventBus._();
@@ -7,12 +8,12 @@ class EventBus {
   static EventBus get instance => _instance;
   factory EventBus() => instance;
 //将事件保存
-  Map<String, List<EventBuysCallback>> maps = {};
+  Map<String, List<EventBuysCallback>?> maps = {};
 
   onOff(eventName, EventBuysCallback c) {
-    if (eventName == null || c == null) return;
+    if (eventName == null) return;
     maps[eventName] ??= List.empty();
-    maps[eventName].add(c);
+    maps[eventName]?.add(c);
   }
 
   remove(eventName) {
