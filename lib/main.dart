@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:xl_flutter/my_text_button.dart';
 import 'package:xl_flutter/stydy_library.dart';
-
-import 'package:xl_flutter/widgets/animates/study_animate.dart';
+import 'package:xl_flutter/study_animate.dart';
+import 'package:xl_flutter/widgets/custom_paint/custom_paint_test.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  initData();
   runApp(MyApp());
 }
+
+void initData() async {}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -34,8 +38,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var listTag = ["动画相关", "框架相关"];
-  List<Widget> listWidget = [StudyAnimate(), StudyLibrary()];
+  var listTag = ["动画相关", "框架相关", "自定义视图学习"];
+  List<Widget> listWidget = [StudyAnimate(), StudyLibrary(), CustomPaintTest()];
 
   @override
   void initState() {

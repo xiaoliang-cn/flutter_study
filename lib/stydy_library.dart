@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:xl_flutter/study_library/bloc/flutter_bloc/bloc_timer/bloc_ticker_test.dart';
 import 'package:xl_flutter/study_library/flash/flash.test.dart';
 import 'package:xl_flutter/study_library/flutter_signin_button/flutter_signin_button_test.dart';
-import 'package:xl_flutter/study_library/sliver_tools/sliver_section.dart';
+import 'package:xl_flutter/study_library/just_audio/just_audio_test.dart';
+import 'package:xl_flutter/study_library/key_board_actions/key_board_actions_test.dart';
 import 'package:xl_flutter/study_library/sliver_tools/sliver_tools_test.dart';
 
 import 'my_text_button.dart';
@@ -23,6 +24,8 @@ class StudyLibrary extends StatelessWidget {
     'flash各种snackBar-toast-dialog',
     'bloc',
     'sliver_tools_滑动工具',
+    'key_board_actions键盘工具',
+    'just_audio音乐播放器',
   ];
   List<Widget> listWidget = [
     CaCheManagerTEST(),
@@ -35,6 +38,8 @@ class StudyLibrary extends StatelessWidget {
     ),
     BlocTickerTest(),
     SLiverToolsTest(),
+    KeyBoardActionsTest(),
+    JustAudioTest(),
   ];
   @override
   Widget build(BuildContext context) {
