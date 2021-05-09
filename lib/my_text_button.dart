@@ -4,6 +4,7 @@ class MyTextButton extends StatelessWidget {
   final String tag;
   final Widget child;
   const MyTextButton({required this.tag, required this.child});
+  // ignore: non_constant_identifier_names
   static final home_button_text_style = TextStyle(color: Colors.white);
 
   @override

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:xl_flutter/study_library/sliver_tools/my_sliver_header.dart';
-import 'package:xl_flutter/study_library/sliver_tools/sliver_section.dart';
 
 ///study a to sliver_tools library [https://pub.dev/packages/sliver_tools]
 

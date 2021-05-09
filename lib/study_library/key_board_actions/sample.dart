@@ -36,12 +36,12 @@ class Sample extends StatelessWidget {
                 // keyboardBarColor: Colors.red,
                 // keyboardSeparatorColor: Colors.purple,
                 actions: [
-                  KeyboardActionsItem(
-                    focusNode: _focusNodeName,
-                  ),
-                  KeyboardActionsItem(
-                    focusNode: _focusNodeQuantity,
-                  ),
+                  // KeyboardActionsItem(
+                  //   focusNode: _focusNodeName,
+                  // ),
+                  // KeyboardActionsItem(
+                  //   focusNode: _focusNodeQuantity,
+                  // ),
                 ],
               ),
               child: ListView(

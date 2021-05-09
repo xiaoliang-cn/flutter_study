@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xl_flutter/my_text_button.dart';
 import 'package:xl_flutter/widgets/animates/animations/animations_test.dart';
+import 'package:xl_flutter/widgets/animates/animations/im_chat/im_chat_%20gradient.dart';
+import 'package:xl_flutter/widgets/animates/animations/loading_widget.dart';
 import 'package:xl_flutter/widgets/animates/scrolling_parallax_effect.dart';
 import 'package:xl_flutter/widgets/animates/simple_animations/simple_animations_test.dart';
 
@@ -10,11 +12,15 @@ class StudyAnimate extends StatelessWidget {
     '嵌入滑动的图片效果',
     'animations-强大的动画库',
     'simpleAnimations-一款部件的小部件动画',
+    '带有渐变的聊天气泡效果',
+    '带微光的加载状态'
   ];
   List<Widget> listWidget = [
     ScrollingParallaxEffect(),
     AnimationsTest(),
-    SimpleAnimationsTest()
+    SimpleAnimationsTest(),
+    ImChatGradient(),
+    ExampleUiLoadingAnimation()
   ];
   @override
   Widget build(BuildContext context) {

@@ -17,6 +17,7 @@ class FileInfoWidget extends StatelessWidget {
           title: const Text('Original URL'),
           subtitle: Text(fileInfo.originalUrl),
         ),
+        // ignore: unnecessary_null_comparison
         if (fileInfo.file != null)
           ListTile(
             title: const Text('Local file path'),

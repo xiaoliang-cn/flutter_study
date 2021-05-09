@@ -75,19 +75,22 @@ void listenAfterDelay() async {
 // }
 
 void listenWithPause() {
-  var counterStream = timedCounter(const Duration(seconds: 1), 15);
+  Stream<int> counterStream = timedCounter(const Duration(seconds: 1), 15);
   StreamSubscription<int>? subscription;
 
-  subscription = counterStream.listen((int counter) {
+  subscription = counterStream
+      .where((event) => 1 % 2 == 0)
+      .map((event) => "string" + event.toString())
+      .listen((counter) {
     print(counter); // Print an integer every second.
-    if (counter == 5) {
+    if (counter == '5') {
       subscription?.cancel();
       // After 5 ticks, pause for five seconds, then resume.
       subscription!.pause(Future.delayed(Duration(seconds: 3), () {
         subscription!.resume();
       }));
     }
-  });
+  }) as StreamSubscription<int>?;
 }
 
 /// Splits a stream of consecutive strings into lines.

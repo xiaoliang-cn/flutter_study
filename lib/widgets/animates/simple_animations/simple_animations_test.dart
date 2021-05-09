@@ -168,6 +168,7 @@ class _SimpleAnimationsState extends State<SimpleAnimationsTest> {
         },
       );
 
+  // ignore: unused_element
   Widget get _buildTimeLineAnimation => ListView(
         children: [
           Center(child: timeLineTween1),
