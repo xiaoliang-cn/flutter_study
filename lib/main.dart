@@ -102,7 +102,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var listTag = ["动画相关", "框架相关", "自定义视图学习", "Flutter-Widget大全", "LineIcons"];
+  var listTag = ["动画相关", "框架相关", "自定义视图学习", "Flutter-Widget大全", "Icons"];
   List<Widget> listWidget = [
     StudyAnimate(),
     StudyLibrary(),

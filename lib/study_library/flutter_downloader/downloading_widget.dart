@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_progress/flutter_advanced_progress.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -36,7 +35,7 @@ class _DownloadWidgetState extends State<DownloadWidget> {
         onTap: () {
           DownloaderManager().openFile(widget.downloadTask.taskId);
         },
-        title: Center(child: Text(widget.downloadTask.filename)),
+        title: Center(child: Text(widget.downloadTask.filename!)),
         subtitle: Center(child: Obx(() => _buildDownloadingWidget())),
         leading: GestureDetector(
             onTap: () async {

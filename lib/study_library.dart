@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xl_flutter/encrypt/main_encrypt.dart';
 import 'package:xl_flutter/study_library/bloc/flutter_bloc/bloc_timer/bloc_ticker_test.dart';
 import 'package:xl_flutter/study_library/file_picker/file_picker_test.dart';
 import 'package:xl_flutter/study_library/flash/flash.test.dart';
@@ -41,7 +42,8 @@ class StudyLibrary extends StatelessWidget {
     'file_picker文件选择器',
     'translator翻译',
     'downloader下载器',
-    '网络状态监听Connectivity'
+    '网络状态监听Connectivity',
+    '加密相关'
   ];
   List<Widget> listWidget = [
     CaCheManagerTEST(),
@@ -63,7 +65,8 @@ class StudyLibrary extends StatelessWidget {
     FilePickerTest(),
     TranSlatorTest(),
     FlutterDownloaderTest(),
-    ConnectivityTest()
+    ConnectivityTest(),
+    MianEncrypt()
   ];
   @override
   Widget build(BuildContext context) {
