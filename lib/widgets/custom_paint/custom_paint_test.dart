@@ -1,52 +1,25 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
+import 'package:xl_flutter/widgets/custom_paint/paint_path.dart';
 
-class CustomPaintTest extends StatefulWidget {
-  @override
-  _CustomPaintTestState createState() => _CustomPaintTestState();
-}
+import '../../my_text_button.dart';
 
-class _CustomPaintTestState extends State<CustomPaintTest> {
+class CustomPaintTest extends StatelessWidget {
+  CustomPaintTest({Key? key}) : super(key: key);
+  final listTag = ['绘制时钟例子(未完成)'];
+  final listWidget = [PaintPathTest()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CustomPaintTest'),
+        title: Text('加密学习'),
         elevation: 0.0,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: CustomPaint(
-          painter: CustomPaintText(),
-        ),
+      body: ListView(
+        children: [
+          for (var i = 0; i < listTag.length; i++)
+            MyTextButton(tag: listTag[i], child: listWidget[i])
+        ],
       ),
     );
-  }
-}
-
-class CustomPaintText extends CustomPainter {
-  Paint mPaint = Paint()
-    ..color = Colors.blue
-    ..strokeCap = StrokeCap.round
-    // ..blendMode = BlendMode.colorBurn
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 5.0;
-  @override
-  void paint(Canvas canvas, Size size) {
-    canvas.saveLayer(
-        Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2), radius: 100),
-        mPaint);
-// 用颜色填充整个绘制区域
-    canvas.drawPaint(Paint()..color = Colors.blue);
-// 在绘制区域以外绘制一个矩形
-    canvas.drawRect(Rect.fromLTWH(0, 0, 100, 100), Paint()..color = Colors.red);
-    canvas.restore();
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }
