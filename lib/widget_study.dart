@@ -4,6 +4,7 @@ import 'package:xl_flutter/widgets/all_flutter_widget/expand_widget/expansion_pa
 import 'package:xl_flutter/widgets/all_flutter_widget/switch_widget/switch_widget.dart';
 import 'package:xl_flutter/widgets/all_flutter_widget/widgets/f_rotated_box.dart';
 import 'package:xl_flutter/widgets/cupertinos/cupertinos.dart';
+import 'package:xl_flutter/widgets/longPress/focused_menu_holder_test.dart';
 import 'my_text_button.dart';
 import 'my_widget.dart';
 import 'widgets/semantics/merges_semantics.dart';
@@ -17,7 +18,8 @@ class StudyFlutterWidget extends StatelessWidget {
     'progress小部件',
     '语义小部件',
     'Ios风格小部件',
-    '展开小部件'
+    '展开小部件',
+    '焦点点击弹窗Menu',
   ];
   List<Widget> listWidget = [
     AllSwitchWidget(),
@@ -26,6 +28,7 @@ class StudyFlutterWidget extends StatelessWidget {
     MergesWidges(),
     CupertionsWidget(),
     ExpansionPanelTest(),
+    FocusedMenuHolderTest()
   ];
   @override
   Widget build(BuildContext context) {

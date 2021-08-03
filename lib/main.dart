@@ -3,9 +3,12 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:hive/hive.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:xl_flutter/my_text_button.dart';
 import 'package:xl_flutter/my_theme.dart';
 import 'package:xl_flutter/study_library/get/my_%20Internationalization.dart';
+import 'package:xl_flutter/study_library/hooks_riverpod/riverpod_provider_observer.dart';
 import 'package:xl_flutter/unknown_route_page_404.dart';
 import 'study_library/get/get_widgets.dart';
 import 'package:xl_flutter/study_library.dart';
@@ -23,56 +26,47 @@ void initData() async {
   await FlutterDownloader.initialize(debug: true);
 }
 
-//手动添加路由监听器
-// class MiddleWare {
-//   static observer(Routing routing) {
-//     ///你除了可以监听路由外，还可以监听每个页面上的SnackBars、Dialogs和Bottomsheets。
-//     if (routing.current == '/second' && !routing.isSnackbar!) {
-//       Get.snackbar("Hi", "You are on second route");
-//     } else if (routing.current == '/third') {
-//       print('last route called');
-//     }
-//   }
-// }
-
 void main() {
   initData();
+  runApp(ProviderScope(
+    observers: [RiverPodProviderObserver()],
+    child: GetMaterialApp(
+      initialBinding: HomeBinDings(),
+      debugShowCheckedModeBanner: false,
+      //未找到路由跳转到404
+      translations: MyMessage(), // 你的翻译
+      locale: Locale('zh', 'CN'), // 将会按照此处指定的语言翻译
+      fallbackLocale: Locale('en', 'US'), // 添加一个回调语言选项，以备上面指定的语言翻译不存在
+      unknownRoute:
+          GetPage(name: '/notfound', page: () => UnKnownRoutePage404()),
+      // initialRoute: Routes.SPLASH,
+      theme: MyTheme.lightThemeData,
+      darkTheme: MyTheme.darkThemeData,
+      themeMode: ThemeMode.light,
 
-  runApp(GetMaterialApp(
-    initialBinding: HomeBinDings(),
-    debugShowCheckedModeBanner: false,
-    //未找到路由跳转到404
-    translations: MyMessage(), // 你的翻译
-    locale: Locale('zh', 'CN'), // 将会按照此处指定的语言翻译
-    fallbackLocale: Locale('en', 'US'), // 添加一个回调语言选项，以备上面指定的语言翻译不存在
-    unknownRoute: GetPage(name: '/notfound', page: () => UnKnownRoutePage404()),
-    // initialRoute: Routes.SPLASH,
-    theme: MyTheme.lightThemeData,
-    darkTheme: MyTheme.darkThemeData,
-    themeMode: ThemeMode.light,
-
-    /// 没有使用GetMaterialApp就需要手动添加监听器
-    ///navigatorObservers: [
-    /// GetObserver(MiddleWare.observer), // HERE !!!
-    /// ]
-    ///中间件 监听导航事件
-    routingCallback: (route) {
-      print(route?.current.toString());
-    },
-    getPages: [
-      //定义路由
-      GetPage(name: "/gexRouteTo", page: () => GexRoute1()),
-      //相同的路由参数不同将会导航到不用的页面
-      GetPage(
-          name: "/gexRouteTo/:arg",
-          page: () => GexRoute2(),
-          //指定不同的过渡效果
-          transition: Transition.cupertino),
-    ],
-    defaultTransition: Transition.fade,
-    // initialBinding: SplashBinding(),
-    // getPages: AppPages.pages,
-    home: MyApp(),
+      /// 没有使用GetMaterialApp就需要手动添加监听器
+      ///navigatorObservers: [
+      /// GetObserver(MiddleWare.observer), // HERE !!!
+      /// ]
+      ///中间件 监听导航事件
+      routingCallback: (route) {
+        print(route?.current.toString());
+      },
+      getPages: [
+        //定义路由
+        GetPage(name: "/gexRouteTo", page: () => GexRoute1()),
+        //相同的路由参数不同将会导航到不用的页面
+        GetPage(
+            name: "/gexRouteTo/:arg",
+            page: () => GexRoute2(),
+            //指定不同的过渡效果
+            transition: Transition.cupertino),
+      ],
+      defaultTransition: Transition.fade,
+      // initialBinding: SplashBinding(),
+      // getPages: AppPages.pages,
+      home: MyApp(),
+    ),
   ));
 }
 
@@ -143,3 +137,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+final logger = Logger();

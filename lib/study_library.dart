@@ -6,6 +6,7 @@ import 'package:xl_flutter/study_library/flutter_signin_button/flutter_signin_bu
 import 'package:xl_flutter/study_library/flutter_slidable/flutter_slidable_test.dart';
 import 'package:xl_flutter/study_library/get/get_test.dart';
 import 'package:xl_flutter/study_library/hive/hive_box_test.dart';
+import 'package:xl_flutter/study_library/hooks_riverpod/riverpod_test.dart';
 import 'package:xl_flutter/study_library/just_audio/just_audio_test.dart';
 import 'package:xl_flutter/study_library/key_board_actions/key_board_actions_test.dart';
 import 'package:xl_flutter/study_library/rx_data/rx_data_test.dart';
@@ -14,7 +15,6 @@ import 'package:xl_flutter/study_library/translator/translator_test.dart';
 
 import 'my_text_button.dart';
 import 'study_library/cache_manager/flutter_cache_manager_test.dart';
-import 'study_library/charcode/charcode_test.dart';
 import 'study_library/connectivity/connectivity_test.dart';
 import 'study_library/flutter_downloader/flutter_downloader_test.dart';
 import 'study_library/photo_view/photo_view_test.dart';
@@ -27,7 +27,6 @@ class StudyLibrary extends StatelessWidget {
     "flutter_cache_manager文件缓存",
     "photo_view图片操作",
     "scroll_to_index滑动指定item",
-    "字符串常量",
     'flutter_signin_button各种登陆按键widget',
     'flash各种snackBar-toast-dialog',
     'bloc',
@@ -41,13 +40,15 @@ class StudyLibrary extends StatelessWidget {
     'file_picker文件选择器',
     'translator翻译',
     'downloader下载器',
-    '网络状态监听Connectivity'
+    '网络状态监听Connectivity',
+    '状态监听riverpod',
+    // 'fkuro路由-待实现',
+    // 'whatsapp_unilink-电话'
   ];
   List<Widget> listWidget = [
     CaCheManagerTEST(),
     PhotoViewTest(),
     ScrollToIndexTest(),
-    CharCodeTest(),
     FlutterSigninButtonTest(),
     FlashPageTest(
       title: '',
@@ -63,7 +64,10 @@ class StudyLibrary extends StatelessWidget {
     FilePickerTest(),
     TranSlatorTest(),
     FlutterDownloaderTest(),
-    ConnectivityTest()
+    ConnectivityTest(),
+    RiverpodTest(),
+
+    // ConnectivityTest(),
   ];
   @override
   Widget build(BuildContext context) {
