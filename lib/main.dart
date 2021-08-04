@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,7 @@ import 'study_library/get/home_bindings.dart';
 import 'study_library/line_icons/icons.dart';
 
 void initData() async {
-  await Hive.initFlutter();
+    await Hive.initFlutter();
   //初始化下载器
   await FlutterDownloader.initialize(debug: true);
 }
@@ -37,7 +39,6 @@ void initData() async {
 
 void main() {
   initData();
-
   runApp(GetMaterialApp(
     initialBinding: HomeBinDings(),
     debugShowCheckedModeBanner: false,

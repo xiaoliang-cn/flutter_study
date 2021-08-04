@@ -5,6 +5,7 @@ import 'package:xl_flutter/widgets/animates/animations/im_chat/im_chat_%20gradie
 import 'package:xl_flutter/widgets/animates/animations/loading_widget.dart';
 import 'package:xl_flutter/widgets/animates/scrolling_parallax_effect.dart';
 import 'package:xl_flutter/widgets/animates/simple_animations/simple_animations_test.dart';
+import 'package:xl_flutter/widgets/animates/transform/transform_exmple.dart';
 
 // ignore: must_be_immutable
 class StudyAnimate extends StatelessWidget {
@@ -13,14 +14,16 @@ class StudyAnimate extends StatelessWidget {
     'animations-强大的动画库',
     'simpleAnimations-一款部件的小部件动画',
     '带有渐变的聊天气泡效果',
-    '带微光的加载状态'
+    '带微光的加载状态',
+    'TransForm例子',
   ];
   List<Widget> listWidget = [
     ScrollingParallaxEffect(),
     AnimationsTest(),
     SimpleAnimationsTest(),
     ImChatGradient(),
-    ExampleUiLoadingAnimation()
+    ExampleUiLoadingAnimation(),
+    TransFormExmple()
   ];
   @override
   Widget build(BuildContext context) {
