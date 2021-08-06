@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_progress/flutter_advanced_progress.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';

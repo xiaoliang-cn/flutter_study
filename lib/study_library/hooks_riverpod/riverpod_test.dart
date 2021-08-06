@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xl_flutter/main.dart';
 
 final numberProvider1 = Provider<int>((ref) => 1);
 
