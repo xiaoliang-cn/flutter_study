@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xl_flutter/encrypt/encrypt_file.dart';
 import 'package:xl_flutter/encrypt/rsa_test.dart';
 
 import '../my_text_button.dart';
@@ -7,9 +8,11 @@ class MianEncrypt extends StatelessWidget {
   MianEncrypt({Key? key}) : super(key: key);
   final listTag = [
     'RSA加密',
+    'File加密',
   ];
   final listWidget = [
-     RASTest()
+     RASTest(),
+     EncryptFile()
   ];
   @override
   Widget build(BuildContext context) {

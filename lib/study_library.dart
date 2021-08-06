@@ -6,7 +6,9 @@ import 'package:xl_flutter/study_library/flash/flash.test.dart';
 import 'package:xl_flutter/study_library/flutter_signin_button/flutter_signin_button_test.dart';
 import 'package:xl_flutter/study_library/flutter_slidable/flutter_slidable_test.dart';
 import 'package:xl_flutter/study_library/get/get_test.dart';
+import 'package:xl_flutter/study_library/getwidget/get_widget_test.dart';
 import 'package:xl_flutter/study_library/hive/hive_box_test.dart';
+import 'package:xl_flutter/study_library/hooks/hooks_test.dart';
 import 'package:xl_flutter/study_library/just_audio/just_audio_test.dart';
 import 'package:xl_flutter/study_library/key_board_actions/key_board_actions_test.dart';
 import 'package:xl_flutter/study_library/rx_data/rx_data_test.dart';
@@ -43,7 +45,9 @@ class StudyLibrary extends StatelessWidget {
     'translator翻译',
     'downloader下载器',
     '网络状态监听Connectivity',
-    '加密相关'
+    '加密相关',
+    'getWidget-ui框架',
+    'hooks_tesdt'
   ];
   List<Widget> listWidget = [
     CaCheManagerTEST(),
@@ -66,7 +70,9 @@ class StudyLibrary extends StatelessWidget {
     TranSlatorTest(),
     FlutterDownloaderTest(),
     ConnectivityTest(),
-    MianEncrypt()
+    MianEncrypt(),
+    GetWidgetTest(),
+    HooksTest()
   ];
   @override
   Widget build(BuildContext context) {

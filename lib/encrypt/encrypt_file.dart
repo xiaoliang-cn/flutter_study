@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart' as path;
 import 'package:encrypt/encrypt.dart' as enc;
 
 //加密文件
@@ -15,23 +17,71 @@ class EncryptFile extends StatefulWidget {
 }
 
 class _EncryptFileState extends State<EncryptFile> {
-
-   String _videoURL =
+  String _videoURL =
       "https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-2408-large.mp4";
   String _imageURL =
       "https://images.unsplash.com/photo-1607753724987-7277196eac5d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=jeremy-bishop-FlR9yw3QEgw-unsplash.jpg&w=1920";
   String _pdfURL = "https://www.irjet.net/archives/V5/i3/IRJET-V5I3124.pdf";
   String _zipURL = "https://www.1001freefonts.com/d/4063/admiration-pains.zip";
+  late Directory _d;
+  String? imagePath;
+  File? file;
+  @override
+  void initState() {
+    super.initState();
+    initData();
+    getPathImage();
+  }
+
+  void getPathImage() async {
+    path.getExternalStorageDirectory().then((value) async {
+      file = File(value!.path + '/abc.png');
+      if(!file!.existsSync()){
+      var a = await _readData(value.path + '/abc.png.aes');
+      var b = _decryptData(a);
+      File(value.path + '/abc.png.aes').delete();
+      file = File(value.path + '/abc.png')..writeAsBytes(b);
+      if (!(await file!.exists())) file!.create();
+      // var c = Utf8Encoder().convert(b);
+      // print(c);
+      }
+      setState(() {});
+    });
+  }
+
+  void initData() async {
+    path.getExternalStorageDirectory().then(
+          (value) => _d = value!,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: null,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('加密文件'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  _downloadAndCreate(_imageURL, _d, 'abc.png');
+                },
+                child: Text("下载文件")),
+            Image.file(
+              file == null ? File('') : file!,
+              fit: BoxFit.fill,
+            )
+          ],
+        ),
+      ),
     );
   }
-  bool _isGranted =false;
 
-    requestStoragePermission() async {
+  bool _isGranted = false;
+
+  requestStoragePermission() async {
     if (!await Permission.storage.isGranted) {
       PermissionStatus result = await Permission.storage.request();
       if (result.isGranted) {
@@ -60,16 +110,16 @@ class _EncryptFileState extends State<EncryptFile> {
     }
   }
 
-  _encryptData(plainString) {
+  Uint8List _encryptData(plainString) {
     print("Encrypting File...");
     final encrypted =
         MyEncrypt.myEncrypter.encryptBytes(plainString, iv: MyEncrypt.myIv);
     return encrypted.bytes;
   }
 
-  _decryptData(encData) {
+  List<int> _decryptData(encData) {
     print("File decryption in progress...");
-    enc.Encrypted en = new enc.Encrypted(encData);
+    var en = new enc.Encrypted(encData);
     return MyEncrypt.myEncrypter.decryptBytes(en, iv: MyEncrypt.myIv);
   }
 

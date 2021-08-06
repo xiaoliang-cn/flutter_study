@@ -127,8 +127,11 @@ Future<void> main() async {
   );
 }
 
+///配置当前时区
 Future<void> _configureLocalTimeZone() async {
+  //初始化数据库
   tz.initializeTimeZones();
+  //初始化时区数据库后，获取当前时区
   final String? timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
   tz.setLocalLocation(tz.getLocation(timeZoneName!));
 }
@@ -632,7 +635,7 @@ class _HomePageState extends State<HomePage> {
             priority: Priority.high,
             ticker: 'ticker');
     const NotificationDetails platformChannelSpecifics =
-        NotificationDetails();
+        NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
         0, 'plain title', 'plain body', platformChannelSpecifics,
         payload: 'item x');
@@ -668,6 +671,7 @@ class _HomePageState extends State<HomePage> {
                           priority: Priority.high,
                           importance: Importance.high,
                           fullScreenIntent: true)),
+                  //在 Android 上，androidAllowWhileIdle用于确定即使设备处于低功耗空闲模式时，是否也应在指定时间传递通知。
                   androidAllowWhileIdle: true,
                   uiLocalNotificationDateInterpretation:
                       UILocalNotificationDateInterpretation.absoluteTime);
